@@ -1,7 +1,20 @@
 import styled from 'styled-components'
 
-export const Container = styled.section`
+import { Props } from '.'
+import { cores } from '../../styles'
+import { Card } from '../Product/styles'
+
+export const Container = styled.section<Omit<Props, 'title' | 'games'>>`
   padding: 32px 0;
+  background-color: ${(props) => {
+    return props.background === 'black' ? cores.preto : cores.cinza
+  }};
+
+  ${Card} {
+    background-color: ${(props) => {
+      return props.background === 'black' ? cores.cinza : cores.preto
+    }};
+  }
 `
 
 export const List = styled.ul`
