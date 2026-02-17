@@ -1,6 +1,10 @@
 import Hero from '../../components/Hero'
 import Section from '../../components/Section'
 
+import Gallery from '../../components/Gallery'
+
+import hogwartsLegacy from '../../assets/images/hogwarts_section.png'
+
 export default function Product() {
   return (
     <>
@@ -31,9 +35,7 @@ export default function Product() {
           jogo.
         </p>
       </Section>
-      <Section title="Galeria" background="black">
-        <div>fotos</div>
-      </Section>
+      <Gallery name="Hogwarts Legacy" defaultCover={hogwartsLegacy} />
     </>
   )
 }
