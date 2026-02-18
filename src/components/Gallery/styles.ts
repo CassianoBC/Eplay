@@ -49,6 +49,11 @@ export const Modal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  display: none;
+
+  &.visivel {
+    display: flex;
+  }
 
   .overlay {
     position: absolute;
@@ -76,8 +81,18 @@ export const ModalContent = styled.div`
     }
   }
 
-  img {
+  > img {
+    width: 100%;
+  }
+
+  img,
+  iframe {
     display: block;
     max-width: 100%;
+  }
+
+  iframe {
+    width: 100%;
+    height: 540px;
   }
 `
