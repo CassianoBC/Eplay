@@ -3,6 +3,8 @@ import { cores } from '../../styles'
 import { TagContainer } from '../Tag/styles'
 import { ButtonContainer } from '../Button/styles'
 
+import Close from '../../assets/images/close.png'
+
 export const Overlay = styled.div`
   position: absolute;
   top: 0;
@@ -62,6 +64,7 @@ export const CartItem = styled.li`
   display: flex;
   border-bottom: 1px solid ${cores.cinzaClaro};
   padding: 8px 0;
+  position: relative;
 
   img {
     width: 80px;
@@ -87,5 +90,16 @@ export const CartItem = styled.li`
     margin-right: 8px;
     margin-bottom: 16px;
     margin-top: 8px;
+  }
+
+  button {
+    background-image: url(${Close});
+    width: 16px;
+    height: 16px;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 8px;
+    right: 0;
   }
 `

@@ -26,6 +26,7 @@ export default function Cart() {
               <Tag>PS4</Tag>
               <p>R$ 125,00</p>
             </div>
+            <button type="button" />
           </CartItem>
           <CartItem>
             <img src={starWars} alt="Star Wars" />
@@ -35,6 +36,7 @@ export default function Cart() {
               <Tag>PS4</Tag>
               <p>R$ 125,00</p>
             </div>
+            <button type="button" />
           </CartItem>
         </ul>
         <Quantity>2 jogo(s) no carrinho</Quantity>
