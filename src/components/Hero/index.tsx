@@ -5,12 +5,22 @@ import Tag from '../Tag'
 
 import { Banner, Infos } from './styles'
 import { formataPreco } from '../ProductsList'
+import { useDispatch } from 'react-redux'
+
+import { add, open } from '../../store/reducers/cart'
 
 type Props = {
   game: Game
 }
 
 export default function Hero({ game }: Props) {
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    dispatch(add(game))
+    dispatch(open())
+  }
+
   return (
     <Banner style={{ backgroundImage: `url(${game.media.cover})` }}>
       <div className="container">
@@ -33,6 +43,7 @@ export default function Hero({ game }: Props) {
               variant="primary"
               type="button"
               title="Adicionar ao carrinho"
+              onClick={addToCart}
             >
               Adicionar ao carrinho
             </Button>

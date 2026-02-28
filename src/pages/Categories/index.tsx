@@ -18,15 +18,31 @@ export default function Categories() {
   if (actionGames && rpgGames && fightGames && simulationGames && sportsGames) {
     return (
       <>
-        <ProductsList games={actionGames} title="Ação" background="black" />
-        <ProductsList games={rpgGames} title="RPG" background="gray" />
-        <ProductsList games={fightGames} title="Luta" background="black" />
+        <ProductsList
+          games={actionGames}
+          title="Ação"
+          background="black"
+          id="action"
+        />
+        <ProductsList games={rpgGames} title="RPG" background="gray" id="rpg" />
+        <ProductsList
+          games={fightGames}
+          title="Luta"
+          background="black"
+          id="fight"
+        />
         <ProductsList
           games={simulationGames}
           title="Simulação"
           background="gray"
+          id="simulation"
         />
-        <ProductsList games={sportsGames} title="Esportes" background="black" />
+        <ProductsList
+          games={sportsGames}
+          title="Esportes"
+          background="black"
+          id="sports"
+        />
       </>
     )
   }

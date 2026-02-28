@@ -1,6 +1,8 @@
-import Button from '../Button'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
+import { close, remove } from '../../store/reducers/cart'
 
-import starWars from '../../assets/images/star_wars.png'
+import Button from '../Button'
 
 import {
   CartContainer,
@@ -11,37 +13,50 @@ import {
   CartItem
 } from './styles'
 import Tag from '../Tag'
+import { formataPreco } from '../ProductsList'
 
 export default function Cart() {
+  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+
+  const dispatch = useDispatch()
+
+  const closeCart = () => {
+    dispatch(close())
+  }
+
+  const getTotalPrice = () => {
+    return items.reduce((acumulador, valorAtual) => {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      return (acumulador += valorAtual.prices.current!)
+    }, 0)
+  }
+
+  const removeItem = (id: number) => {
+    dispatch(remove(id))
+  }
+
   return (
-    <CartContainer>
-      <Overlay />
+    <CartContainer className={isOpen ? 'is-open' : ''}>
+      <Overlay onClick={closeCart} />
       <Sidebar>
         <ul>
-          <CartItem>
-            <img src={starWars} alt="Star Wars" />
-            <div>
-              <h3>Nome do Jogo</h3>
-              <Tag>RPG</Tag>
-              <Tag>PS4</Tag>
-              <p>R$ 125,00</p>
-            </div>
-            <button type="button" />
-          </CartItem>
-          <CartItem>
-            <img src={starWars} alt="Star Wars" />
-            <div>
-              <h3>Nome do Jogo</h3>
-              <Tag>RPG</Tag>
-              <Tag>PS4</Tag>
-              <p>R$ 125,00</p>
-            </div>
-            <button type="button" />
-          </CartItem>
+          {items.map((item) => (
+            <CartItem key={item.id}>
+              <img src={item.media.thumbnail} alt={item.name} />
+              <div>
+                <h3>{item.name}</h3>
+                <Tag>{item.details.category}</Tag>
+                <Tag>{item.details.system}</Tag>
+                <p>{formataPreco(item.prices.current)}</p>
+              </div>
+              <button type="button" onClick={() => removeItem(item.id)} />
+            </CartItem>
+          ))}
         </ul>
-        <Quantity>2 jogo(s) no carrinho</Quantity>
+        <Quantity>{items.length} jogo(s) no carrinho</Quantity>
         <Prices>
-          Total de R$ 250,00 <span>Em até 6x sem juros</span>
+          Total de R$ {formataPreco(getTotalPrice())}{' '}
+          <span>Em até 6x sem juros</span>
         </Prices>
         <Button title="Clique aqui para continuar a compra" type="button">
           Continuar com a compra
