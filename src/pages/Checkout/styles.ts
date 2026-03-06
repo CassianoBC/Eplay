@@ -17,6 +17,7 @@ export const Row = styled.div<RowProps>`
   display: flex;
   column-gap: 24px;
   margin-top: ${(props) => props.marginTop || '0'};
+  align-items: flex-end;
 `
 
 export const InputGroup = styled.div<InputGroupProps>`
@@ -30,7 +31,8 @@ export const InputGroup = styled.div<InputGroupProps>`
     display: block;
   }
 
-  input {
+  input,
+  select {
     background-color: ${cores.branco};
     height: 32px;
     padding: 0 8px;
@@ -49,6 +51,7 @@ export const TabButton = styled.button<TabButtonProps>`
   border: none;
   margin-right: 16px;
   padding: 0 8px;
+  cursor: pointer;
 
   img {
     width: 16px;
