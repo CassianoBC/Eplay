@@ -1,18 +1,18 @@
 import styled from 'styled-components'
 
 import { Props } from '.'
-import { breackpoints, cores } from '../../styles'
+import { breakpoints, colors } from '../../styles'
 import { Card } from '../Product/styles'
 
 export const Container = styled.section<Omit<Props, 'title' | 'games'>>`
   padding: 32px 0;
   background-color: ${(props) => {
-    return props.background === 'black' ? cores.preto : cores.cinza
+    return props.background === 'black' ? colors.black : colors.gray
   }};
 
   ${Card} {
     background-color: ${(props) => {
-      return props.background === 'black' ? cores.cinza : cores.preto
+      return props.background === 'black' ? colors.gray : colors.black
     }};
   }
 `
@@ -23,11 +23,11 @@ export const List = styled.ul`
   gap: 24px;
   margin-top: 40px;
 
-  @media (max-width: ${breackpoints.desktop}) {
+  @media (max-width: ${breakpoints.desktop}) {
     grid-template-columns: 1fr 1fr;
   }
 
-  @media (max-width: ${breackpoints.tablet}) {
+  @media (max-width: ${breakpoints.tablet}) {
     grid-template-columns: 1fr;
   }
 `

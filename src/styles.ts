@@ -1,14 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
 
-export const cores = {
-  branco: '#EEEEEE',
-  preto: '#111111',
-  cinza: '#333333',
-  verde: '#10ac84',
-  cinzaClaro: '#a3a3a3'
+export const colors = {
+  white: '#EEEEEE',
+  black: '#111111',
+  gray: '#333333',
+  green: '#10ac84',
+  lightGray: '#a3a3a3'
 }
 
-export const breackpoints = {
+export const breakpoints = {
   desktop: '1024px',
   tablet: '768px'
 }
@@ -23,8 +23,8 @@ export const GlobalStyle = createGlobalStyle`
 }
 
   body {
-    background-color: ${cores.preto};
-    color: ${cores.branco};
+    background-color: ${colors.black};
+    color: ${colors.white};
     padding-top: 40px;
   }
 
@@ -33,7 +33,7 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     margin: 0 auto;
 
-    @media (max-width: ${breackpoints.desktop}) {
+    @media (max-width: ${breakpoints.desktop}) {
       max-width: 80%;
     }
   }

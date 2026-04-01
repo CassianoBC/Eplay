@@ -4,16 +4,9 @@ import { close, remove } from '../../store/reducers/cart'
 
 import Button from '../Button'
 
-import {
-  CartContainer,
-  Overlay,
-  Sidebar,
-  Prices,
-  Quantity,
-  CartItem
-} from './styles'
+import * as S from './styles'
 import Tag from '../Tag'
-import { formataPreco } from '../ProductsList'
+import { parseToBrl } from '../../utils'
 
 export default function Cart() {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -36,32 +29,32 @@ export default function Cart() {
   }
 
   return (
-    <CartContainer className={isOpen ? 'is-open' : ''}>
-      <Overlay onClick={closeCart} />
-      <Sidebar>
+    <S.CartContainer className={isOpen ? 'is-open' : ''}>
+      <S.Overlay onClick={closeCart} />
+      <S.Sidebar>
         <ul>
           {items.map((item) => (
-            <CartItem key={item.id}>
+            <S.CartItem key={item.id}>
               <img src={item.media.thumbnail} alt={item.name} />
               <div>
                 <h3>{item.name}</h3>
                 <Tag>{item.details.category}</Tag>
                 <Tag>{item.details.system}</Tag>
-                <p>{formataPreco(item.prices.current)}</p>
+                <p>{parseToBrl(item.prices.current)}</p>
               </div>
               <button type="button" onClick={() => removeItem(item.id)} />
-            </CartItem>
+            </S.CartItem>
           ))}
         </ul>
-        <Quantity>{items.length} jogo(s) no carrinho</Quantity>
-        <Prices>
-          Total de R$ {formataPreco(getTotalPrice())}{' '}
+        <S.Quantity>{items.length} jogo(s) no carrinho</S.Quantity>
+        <S.Prices>
+          Total de R$ {parseToBrl(getTotalPrice())}{' '}
           <span>Em até 6x sem juros</span>
-        </Prices>
+        </S.Prices>
         <Button title="Clique aqui para continuar a compra" type="button">
           Continuar com a compra
         </Button>
-      </Sidebar>
-    </CartContainer>
+      </S.Sidebar>
+    </S.CartContainer>
   )
 }
