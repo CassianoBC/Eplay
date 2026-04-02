@@ -9,43 +9,53 @@ import {
 } from '../../services/api'
 
 export default function Categories() {
-  const { data: actionGames } = useGetActionGamesQuery()
-  const { data: rpgGames } = useGetRpgGamesQuery()
-  const { data: fightGames } = useGetFightGamesQuery()
-  const { data: simulationGames } = useGetSimulationGamesQuery()
-  const { data: sportsGames } = useGetSportsGamesQuery()
+  const { data: actionGames, isLoading: isLoadingAction } =
+    useGetActionGamesQuery()
+  const { data: rpgGames, isLoading: isLoadingRpg } = useGetRpgGamesQuery()
+  const { data: fightGames, isLoading: isLoadingFight } =
+    useGetFightGamesQuery()
+  const { data: simulationGames, isLoading: isLoadingSimulation } =
+    useGetSimulationGamesQuery()
+  const { data: sportsGames, isLoading: isLoadingSports } =
+    useGetSportsGamesQuery()
 
-  if (actionGames && rpgGames && fightGames && simulationGames && sportsGames) {
-    return (
-      <>
-        <ProductsList
-          games={actionGames}
-          title="Ação"
-          background="black"
-          id="action"
-        />
-        <ProductsList games={rpgGames} title="RPG" background="gray" id="rpg" />
-        <ProductsList
-          games={fightGames}
-          title="Luta"
-          background="black"
-          id="fight"
-        />
-        <ProductsList
-          games={simulationGames}
-          title="Simulação"
-          background="gray"
-          id="simulation"
-        />
-        <ProductsList
-          games={sportsGames}
-          title="Esportes"
-          background="black"
-          id="sports"
-        />
-      </>
-    )
-  }
-
-  return <h4>Carregando...</h4>
+  return (
+    <>
+      <ProductsList
+        games={actionGames}
+        title="Ação"
+        background="black"
+        id="action"
+        isLoading={isLoadingAction}
+      />
+      <ProductsList
+        games={rpgGames}
+        title="RPG"
+        background="gray"
+        id="rpg"
+        isLoading={isLoadingRpg}
+      />
+      <ProductsList
+        games={fightGames}
+        title="Luta"
+        background="black"
+        id="fight"
+        isLoading={isLoadingFight}
+      />
+      <ProductsList
+        games={simulationGames}
+        title="Simulação"
+        background="gray"
+        id="simulation"
+        isLoading={isLoadingSimulation}
+      />
+      <ProductsList
+        games={sportsGames}
+        title="Esportes"
+        background="black"
+        id="sports"
+        isLoading={isLoadingSports}
+      />
+    </>
+  )
 }
